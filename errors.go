@@ -67,3 +67,10 @@ func (e *Error) Wrap(err error) *Error {
 func New(msg string) *Error {
 	return &Error{err: errors.New(msg)}
 }
+
+// Below functions provide compatibility with std go errors
+var (
+	Is   = errors.Is
+	As   = errors.As
+	Join = errors.Join
+)
