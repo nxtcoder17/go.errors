@@ -59,6 +59,12 @@ func (e *Error) GetKV() []any {
 	return e.kv
 }
 
+func (e *Error) AsKeyValues() []any {
+	kv := make([]any, 0, len(e.kv)+2)
+	kv = append(kv, "err", e.err.Error())
+	return append(kv, e.kv...)
+}
+
 func (e *Error) Wrap(err error) *Error {
 	if v, ok := err.(*Error); ok {
 		e.kv = append(e.kv, v.kv...)
