@@ -48,8 +48,15 @@ func (e *Error) Error() string {
 	if len(e.kv) > 0 {
 		msg.WriteString(">")
 	}
-	//
 	return msg.String()
+}
+
+func (e *Error) GetErrMessage() string {
+	return e.err.Error()
+}
+
+func (e *Error) GetKV() []any {
+	return e.kv
 }
 
 func (e *Error) Wrap(err error) *Error {
