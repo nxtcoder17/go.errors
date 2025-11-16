@@ -22,7 +22,7 @@ func (e *Error) KV(kvPairs ...any) *Error {
 		e.kv = make([]any, 0, len(kvPairs))
 	}
 
-	for i := 1; i < len(kvPairs); i++ {
+	for i := 1; i < len(kvPairs); i += 2 {
 		if ks, ok := kvPairs[i-1].(string); ok {
 			e.kv = append(e.kv, ks, kvPairs[i])
 		}
